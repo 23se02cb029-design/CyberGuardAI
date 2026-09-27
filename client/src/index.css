@@ -1,0 +1,275 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  color-scheme: light;
+  --primary: #0ea5e9;
+  --primary-foreground: #f8fbff;
+  --sidebar-primary: #0ea5e9;
+  --sidebar-primary-foreground: #f8fbff;
+  --chart-1: #ef4444;
+  --chart-2: #f59e0b;
+  --chart-3: #0ea5e9;
+  --chart-4: #8b5cf6;
+  --chart-5: #10b981;
+  --radius: 0.75rem;
+  --background: #edf5ff;
+  --foreground: #0f172a;
+  --card: rgba(255, 255, 255, 0.76);
+  --card-foreground: #0f172a;
+  --popover: rgba(255, 255, 255, 0.9);
+  --popover-foreground: #0f172a;
+  --secondary: #e2e8f0;
+  --secondary-foreground: #1e293b;
+  --muted: #e2e8f0;
+  --muted-foreground: #475569;
+  --accent: #dfeeff;
+  --accent-foreground: #0f172a;
+  --destructive: #ef4444;
+  --destructive-foreground: #fff1f2;
+  --border: rgba(14, 116, 144, 0.14);
+  --input: rgba(148, 163, 184, 0.18);
+  --ring: #0ea5e9;
+  --sidebar: #f8fbff;
+  --sidebar-foreground: #1f2937;
+  --sidebar-accent: #e0f2fe;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: rgba(14, 165, 233, 0.12);
+  --sidebar-ring: #0ea5e9;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: #050b14;
+  --foreground: #dbeafe;
+  --card: #0a1423;
+  --card-foreground: #dbeafe;
+  --popover: #0a1423;
+  --popover-foreground: #dbeafe;
+  --secondary: #101f32;
+  --secondary-foreground: #b6c9df;
+  --muted: #0c1a2b;
+  --muted-foreground: #7890aa;
+  --accent: #102941;
+  --accent-foreground: #e0f2fe;
+  --border: rgba(91, 143, 190, 0.22);
+  --input: rgba(91, 143, 190, 0.3);
+  --ring: #22d3ee;
+  --sidebar: #07111f;
+  --sidebar-foreground: #c7d8eb;
+  --sidebar-accent: #102941;
+  --sidebar-accent-foreground: #e0f2fe;
+  --sidebar-border: rgba(91, 143, 190, 0.2);
+  --sidebar-ring: #22d3ee;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    min-height: 100vh;
+    background-color: var(--background);
+    background-image: radial-gradient(circle at 70% -10%, rgba(14, 165, 233, 0.12), transparent 28%), linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+    background-size: auto, 34px 34px, 34px 34px;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  #root {
+    min-height: 100vh;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  /**
+   * Custom container utility that centers content and adds responsive padding.
+   *
+   * This overrides Tailwind's default container behavior to:
+   * - Auto-center content (mx-auto)
+   * - Add responsive horizontal padding
+   * - Set max-width for large screens
+   *
+   * Usage: <div className="container">...</div>
+   *
+   * For custom widths, use max-w-* utilities directly:
+   * <div className="max-w-6xl mx-auto px-4">...</div>
+   */
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem; /* 16px - mobile padding */
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem; /* 32px - desktop padding */
+      padding-right: 2rem;
+      max-width: 1280px; /* Standard content width */
+    }
+  }
+}
+/* Blueprint aesthetic additions */
+.blueprint-grid {
+  background-image:
+    linear-gradient(to right, rgba(85, 132, 170, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(85, 132, 170, 0.08) 1px, transparent 1px);
+  background-size: 34px 34px;
+  background-color: transparent;
+}
+
+.blueprint-accent {
+  border: 2px solid oklch(0.65 0.2 200 / 0.3);
+  box-shadow: inset 0 0 0 1px oklch(0.7 0.15 320 / 0.2);
+}
+
+.tech-label {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: #7890aa;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.soc-surface {
+  border: 1px solid var(--border);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(226, 232, 240, 0.72));
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08), inset 0 1px rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+}
+
+.dark .soc-surface {
+  background: linear-gradient(145deg, rgba(12, 29, 48, 0.94), rgba(7, 17, 31, 0.88));
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18), inset 0 1px rgba(148, 220, 255, 0.04);
+}
+
+.soc-surface-hover {
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.soc-surface-hover:hover {
+  border-color: rgba(34, 211, 238, 0.5);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25), 0 0 22px rgba(34, 211, 238, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Geometric shapes with clip-path */
+.shape-diagonal {
+  clip-path: polygon(0 8%, 100% 0, 100% 100%, 0 92%);
+}
+
+.shape-wave {
+  clip-path: polygon(0 20%, 5% 15%, 10% 20%, 15% 15%, 20% 20%, 25% 15%, 30% 20%, 35% 15%, 40% 20%, 45% 15%, 50% 20%, 55% 15%, 60% 20%, 65% 15%, 70% 20%, 75% 15%, 80% 20%, 85% 15%, 90% 20%, 95% 15%, 100% 20%, 100% 100%, 0 100%);
+}
+
+/* Cyber HUD utilities (ops-console styling, e.g. DemoPage) */
+.dark .blueprint-grid {
+  background-image:
+    linear-gradient(to right, oklch(0.7 0.15 200 / 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.7 0.15 200 / 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+@keyframes hud-blink {
+  50% {
+    opacity: 0;
+  }
+}
+.animate-hud-blink {
+  animation: hud-blink 1s step-end infinite;
+}
+
+@keyframes hud-scan {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(320%);
+  }
+}
+.animate-hud-scan {
+  animation: hud-scan 1.6s ease-in-out infinite;
+}
+
+.text-glow-green {
+  color: oklch(0.85 0.22 145);
+  text-shadow: 0 0 8px oklch(0.75 0.22 145 / 0.65);
+}
+.text-glow-amber {
+  color: oklch(0.85 0.18 80);
+  text-shadow: 0 0 8px oklch(0.75 0.18 80 / 0.65);
+}
+.text-glow-red {
+  color: oklch(0.75 0.22 25);
+  text-shadow: 0 0 8px oklch(0.65 0.22 25 / 0.65);
+}
+.text-glow-cyan {
+  color: oklch(0.85 0.14 200);
+  text-shadow: 0 0 8px oklch(0.75 0.14 200 / 0.65);
+}

