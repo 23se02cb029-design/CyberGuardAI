@@ -95,8 +95,8 @@ export async function generateJson(
   userPrompt: string
 ): Promise<any> {
   const apiKey = process.env.GEMINI_API_KEY?.trim();
-  if (process.env.NODE_ENV === "test" && (!apiKey || !apiKey.startsWith("AIzaSy"))) {
-    throw new Error("Gemini skipped in test environment; heuristic fallback active");
+  if (!apiKey || !apiKey.startsWith("AIzaSy") || process.env.NODE_ENV === "test") {
+    throw new Error("Gemini skipped; heuristic fallback active");
   }
 
   const client = getClient();
@@ -132,8 +132,8 @@ export async function generateText(
   userPrompt: string
 ): Promise<string> {
   const apiKey = process.env.GEMINI_API_KEY?.trim();
-  if (process.env.NODE_ENV === "test" && (!apiKey || !apiKey.startsWith("AIzaSy"))) {
-    throw new Error("Gemini skipped in test environment; heuristic fallback active");
+  if (!apiKey || !apiKey.startsWith("AIzaSy") || process.env.NODE_ENV === "test") {
+    throw new Error("Gemini skipped; heuristic fallback active");
   }
 
   const client = getClient();
