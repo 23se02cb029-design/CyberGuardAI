@@ -14,16 +14,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: "pnpm"
+
+      - name: Enable Corepack & Install pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@10.4.1 --activate
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -36,10 +35,3 @@ jobs:
 
       - name: Build production bundle
         run: pnpm run build
-
-      - name: Optional Deploy Webhook (Render / Railway)
-        if: github.ref == 'refs/heads/main' && env.DEPLOY_HOOK_URL != ''
-        env:
-          DEPLOY_HOOK_URL: ${{ secrets.DEPLOY_HOOK_URL }}
-        run: |
-          curl -X POST "$DEPLOY_HOOK_URL"
