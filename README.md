@@ -133,8 +133,8 @@ The existing security engine is used for endpoint telemetry scoring. Events are 
 
 1. Clone the environment:
 ```bash
-git clone https://github.com/iHiteshShibag/cyberguard-ai
-cd cyberguard-ai
+git clone https://github.com/23se02cb029-design/CyberGuardAI.git
+cd CyberGuardAI
 ```
 
 2. Install system-level node dependencies:
@@ -162,9 +162,9 @@ Feel free to use, modify, and distribute it for educational and personal purpose
 
 # 👨‍💻 Author
 
-**Hitesh Shibag**
+**Vasur Vora**
 
-- GitHub: https://github.com/iHiteshShibag
+- GitHub: https://github.com/23se02cb029-design
 
 If you found this project helpful, consider giving it a ⭐ on GitHub.
 

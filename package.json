@@ -1,6 +1,11 @@
 {
   "name": "cyberguard-ai",
   "version": "1.0.0",
+  "author": "Vasur Vora (https://github.com/23se02cb029-design)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/23se02cb029-design/CyberGuardAI.git"
+  },
   "packageManager": "pnpm@10.4.1",
   "type": "module",
   "license": "MIT",
